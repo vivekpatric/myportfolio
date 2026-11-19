@@ -1,0 +1,103 @@
+
+/* =========================================================
+   PROBLEM SUMMARY — WORD ANIMATION MASKS
+   ========================================================= */
+
+.case__lead-points {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.case__lead-points > li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.case__problem-text {
+  display: block;
+  min-width: 0;
+  line-height: 1.85;
+}
+
+/* Keep split words clipped cleanly during their reveal. */
+.case__problem-text .wd {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.case__problem-text .wd-i {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+/* =========================================================
+   FOOTER — NUMBERED NEXT IMPROVEMENTS
+   ========================================================= */
+
+.case-next {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  margin: 0 0 clamp(36px, 6vh, 64px);
+  list-style: none;
+}
+
+.case-next li {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: start;
+  gap: 16px;
+
+  padding: 20px 0;
+
+  border-bottom: 1px solid rgba(177, 19, 19, 0.22);
+}
+
+.case-next__number {
+  padding-top: 3px;
+
+  color: rgba(177, 19, 19, 0.65);
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.case-next li > span:last-child {
+  display: block;
+  min-width: 0;
+
+  font-size: clamp(15px, 1.35vw, 19px);
+  line-height: 1.65;
+}
+
+.case-next li .wd {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.case-next li .wd-i {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+@media (max-width: 600px) {
+  .case__lead-points {
+    gap: 16px;
+  }
+
+  .case-next li {
+    grid-template-columns: 32px minmax(0, 1fr);
+    gap: 10px;
+    padding: 16px 0;
+  }
+}

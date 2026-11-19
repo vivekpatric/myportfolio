@@ -1,0 +1,40 @@
+.ml {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  color: #f3efc8;
+  background: var(--color-red, #4e111b); /* same red as the split panels, so the hand-off is seamless */
+  font-family: 'Merriweather', Georgia, serif;
+}
+.ml__content { display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2vh, 18px); }
+.ml__svg { width: min(86vw, 660px); height: auto; overflow: visible; }
+
+/* anime mecha look: thick dark outlines, cream armour, orange accents, glowing optics */
+.m-p { stroke: #1d0508; stroke-width: 3; stroke-linejoin: round; }
+.m-body { fill: #f3efc8; }
+.m-tan { fill: #e2d9a0; }
+.m-dark { fill: #7a1d2b; }
+.m-orange { fill: #e8683a; }
+.m-visor { fill: #1d0508; }
+.m-core { fill: #ffb48a; filter: drop-shadow(0 0 8px #ff8a50); }
+.m-tire { fill: #2b0a10; }
+.m-rim { fill: #f3efc8; }
+.m-hub { fill: #e8683a; }
+.m-eyes rect { fill: #ffd9b0; filter: drop-shadow(0 0 6px #ff9d6e); }
+.m-eyes { opacity: 0; }
+.m-ground { fill: rgba(0, 0, 0, 0.28); }
+.ml__speed line { stroke: #f3efc8; stroke-width: 2.5; stroke-linecap: round; opacity: 0.55; animation: ml-speed 0.45s linear infinite; }
+.ml__speed line:nth-child(2) { animation-delay: -0.15s; }
+.ml__speed line:nth-child(3) { animation-delay: -0.3s; }
+@keyframes ml-speed { from { transform: translateX(30px); opacity: 0; } 30% { opacity: 0.6; } to { transform: translateX(-40px); opacity: 0; } }
+
+.ml__row { display: flex; align-items: center; gap: 16px; width: min(76vw, 460px); margin-top: 6px; }
+.ml__bar { flex: 1; height: 3px; background: rgba(243, 239, 200, 0.25); }
+.ml__fill { display: block; width: 100%; height: 100%; background: #f3efc8; transform: scaleX(0); transform-origin: left center; }
+.ml__pct { min-width: 4ch; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-align: right; font-variant-numeric: tabular-nums; }
+.ml__name { margin: 10px 0 0; font-size: clamp(22px, 3.4vw, 40px); font-weight: 700; letter-spacing: 0.12em; }
+.ml__role { margin: 0; font-size: clamp(11px, 1.1vw, 14px); letter-spacing: 0.3em; opacity: 0.8; }
+
+@media (prefers-reduced-motion: reduce) { .ml__speed line { animation: none; } }

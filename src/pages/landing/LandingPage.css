@@ -1,0 +1,23 @@
+
+
+:root {
+  background: var(--color-cream);
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background: var(--color-cream);
+}
+
+.landing-shell {
+  position: relative;
+  min-height: 100svh;
+  background: var(--color-cream);
+}
+html.intro-lock .featured-rail,
+html.intro-lock .pf {
+  visibility: hidden;
+}

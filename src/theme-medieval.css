@@ -1,0 +1,85 @@
+/* ==========================================================================
+   Medieval European theme, Option A (castle great hall): parchment, oxblood, antique gold.
+   Import this LAST (see main.tsx). Everything is scoped to the nav, the home project rail,
+   the footer, and the Work and Profile pages, so the loader and landing animation are untouched.
+   ========================================================================== */
+
+/* ---- 1. Palette + fonts, through the variables your files already use ---- */
+body .work,
+body .pr,
+body .featured-rail,
+body .pf,
+body .site-nav__shell {
+  --mv-parchment: #efe4c6;
+  --mv-paper: #f7f0dc;
+  --mv-gold: #a67c2e;
+  --mv-heraldic: #8c1d2b;
+  --mv-book: 'EB Garamond', 'Cormorant Garamond', Georgia, serif;
+  --mv-caps: 'Cinzel', 'Bodoni Moda', Georgia, serif;
+}
+
+body .work {
+  --wk-cream: var(--mv-parchment);
+  --wk-paper: var(--mv-paper);
+  --wk-serif: var(--mv-book);
+}
+
+body .pr {
+  --pr-cream: var(--mv-parchment);
+  --pr-paper: var(--mv-paper);
+  --pr-serif: var(--mv-book);
+}
+
+body .featured-rail {
+  --rail-cream: var(--mv-parchment);
+  --rail-serif: var(--mv-book);
+}
+
+body .pf {
+  --pf-cream: var(--mv-parchment);
+}
+
+body .site-nav__shell {
+  --nav-cream: var(--mv-parchment);
+  --nav-red: var(--mv-heraldic);
+}
+
+/* ---- 2. Small-caps inscription labels (size is not changed, so layouts stay put) ---- */
+body .case__eyebrow,
+body .case__kicker,
+body .case__label,
+body .case-stat__label,
+body .pr-eyebrow,
+body .pr-label,
+body .pr-stat__label,
+body .featured-rail .eyebrow,
+body .pf__eyebrow {
+  font-family: var(--mv-caps);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* ---- 3. Text cards get a thin gold inner frame, like a manuscript border ---- */
+/* outline with a negative offset: it never changes layout and is never clipped */
+body .pr-card,
+body .pr-moment__card,
+body .case-card,
+body .case-stat,
+body .pf__card-surface {
+  border-radius: 3px;
+  outline: 1px solid rgba(166, 124, 46, 0.5);
+  outline-offset: -7px;
+}
+
+/* ---- 4. Aged-paper grain on the light pages (a static tile, so it costs nothing while scrolling) ---- */
+body .work {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .32 0 0 0 0 .2 0 0 0 0 .1 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ---- 5. Selection colour ---- */
+.work ::selection,
+.pr ::selection {
+  background: #4e111b;
+  color: #efe4c6;
+}

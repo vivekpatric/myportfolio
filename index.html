@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" class="boot">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4e111b" />
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cinzel:wght@500;600&family=DM+Sans:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    html.boot { background: #4e111b !important; }
+    html.boot body,
+    html.boot #root { background: transparent !important; }
+  </style>
+    <script>
+      // safety net: never leave the page stuck red
+      
+      setTimeout(function () {
+        document.documentElement.classList.remove('boot');
+      }, 5000);
+    </script>
+    <meta name="description" content="Vivek Patric — developer portfolio exploring thoughtful interfaces, full-stack systems, and creative motion." />
+    <title>Vivek Patric — Developer Portfolio</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

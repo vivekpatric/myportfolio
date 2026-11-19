@@ -1,0 +1,63 @@
+/* ---------- page transition: red + cream grid wipe ---------- */
+.pt {
+  position: fixed;
+  z-index: 10000;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: auto;
+}
+.pt__lines {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+}
+.pt__line { position: absolute; background: var(--color-red, var(--portfolio-red)); }
+.pt__line:nth-child(even) { background: var(--color-cream, var(--portfolio-cream)); }
+.pt__line--h {
+  left: 0;
+  right: 0;
+  height: 3px;
+  margin-top: -1.5px;
+  top: calc(var(--k) * 100% / var(--rows));
+}
+.pt__line--v {
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1.5px;
+  left: calc(var(--k) * 100% / var(--cols));
+}
+.pt__grid {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+.pt__cell--red { background: var(--color-red, var(--portfolio-red)); }
+.pt__cell--cream { background: var(--color-cream, var(--portfolio-cream)); }
+.pt__mark {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  margin: -44px 0 0 -44px;
+  border: 2px solid var(--color-cream, var(--portfolio-cream));
+  border-radius: 50%;
+  color: var(--color-cream, var(--portfolio-cream));
+  background: var(--color-red, var(--portfolio-red));
+  font-family: 'Bodoni Moda', Georgia, serif;
+  font-size: 28px;
+  letter-spacing: -0.07em;
+  pointer-events: none;
+}
+.pt__cell, .pt__line { will-change: transform; }
+@media (prefers-reduced-motion: reduce) {
+  .pt { display: none !important; }
+}

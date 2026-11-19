@@ -1,0 +1,334 @@
+
+/* =========================================================
+   SCULPTED FLOATING NAVIGATION
+   ========================================================= */
+
+/* .site-nav-wrap {
+  --nav-cream: #f3efc8;
+  --nav-red: #b71118;
+  --nav-burgundy: #4e111b;
+
+  position: fixed;
+  top: 18px;
+  left: 0;
+  z-index: 1000;
+
+  width: 100%;
+  padding: 0 4vw;
+
+  pointer-events: none;
+
+  transform: translateY(0);
+  opacity: 1;
+
+  transition:
+    transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.35s ease;
+}
+
+.site-nav-wrap.is-hidden {
+  transform: translateY(-130%);
+  opacity: 0;
+} */
+
+.site-nav__shell {
+  --nav-cream: #f3efc8;
+  --nav-red: #b71118;
+  --nav-burgundy: #4e111b;  
+  position: fixed; /* Changed from relative to fixed */
+  top: 8px;       /* Distance from the top of the screen */
+  left: 50%;       /* Centers it horizontally when using max-width */
+  transform: translateX(-50%); /* Perfect horizontal centering */
+  
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+  width: min(1440px, calc(100% - 36px)); /* Keeps margin padding on smaller screens */
+  min-height: 54px;
+  margin: 0 auto;
+  padding: 6px clamp(18px, 2.4vw, 36px);
+
+  pointer-events: auto;
+  z-index: 1000; /* Ensure it stays above other content */
+
+  border: 1px solid rgba(177, 19, 19, 0.28);
+  border-radius:
+    28px 72px 28px 72px /
+    28px 38px 28px 38px;
+
+  background: var(--nav-cream); 
+  color: var(--nav-red);
+  box-shadow: 0 16px 32px rgba(48, 2, 11, 0.15); /* Added subtle shadow for floating effect */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.site-nav__shell.is-hidden {
+  transform: translateX(-50%) translateY(-130%); /* Combines centering with the hide translation */
+  opacity: 0;
+  pointer-events: none;
+}
+/* Fine inner contour */
+.site-nav__shell::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+
+  border: 1px solid rgba(177, 19, 19, 0.09);
+
+  border-radius:
+    23px 66px 23px 66px /
+    23px 33px 23px 33px;
+
+  pointer-events: none;
+}
+
+/* Brand */
+
+.site-nav__brand {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  min-width: 0;
+
+  color: var(--nav-red);
+  text-decoration: none;
+}
+
+.site-nav__monogram {
+  display: grid;
+  place-items: center;
+
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+
+  border: 1px solid var(--nav-red);
+  border-radius: 50% 50% 50% 12%;
+
+  font-family: var(--wk-serif, Georgia, serif);
+  font-size: 15px;
+}
+
+.site-nav__brand-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.site-nav__brand-copy strong {
+  font-family: var(--wk-serif, Georgia, serif);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.site-nav__brand-copy small {
+  color: #a44b4b;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Navigation links */
+
+.site-nav {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px; /* Gaps between individual navbar links */
+
+  padding: 4px;
+
+  border: 1px solid rgba(177, 19, 19, 0.23);
+  border-radius: 999px;
+
+  background: rgba(255, 253, 249, 0.25);
+}
+
+.site-nav__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 34px;
+  padding: 0 16px;
+
+  border-radius: 999px;
+
+  color: var(--nav-red);
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    transform 0.3s ease;
+}
+
+.site-nav__link:hover {
+  transform: translateY(-1px);
+}
+
+.site-nav__number {
+  font-size: 9px;
+  opacity: 0.65;
+}
+
+.site-nav__link.is-active {
+  color: var(--nav-cream);
+  background: var(--nav-red);
+
+  box-shadow:
+    0 4px 12px rgba(177, 19, 19, 0.18);
+}
+
+/* Availability */
+
+.site-nav__availability {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 9px;
+
+  color: #a44b4b;
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.site-nav__availability i {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #4b9561;
+
+  box-shadow:
+    0 0 0 4px rgba(75, 149, 97, 0.12);
+}
+
+/* Small editorial detail */
+
+.site-nav__ornament {
+  position: absolute;
+  right: 25px;
+  bottom: -11px;
+
+  padding: 2px 7px;
+
+  color:  var(--nav-cream);
+  background:var(--nav-red);
+
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+/* =========================================================
+   RESPONSIVE NAVIGATION
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .site-nav-wrap {
+    padding: 0 20px;
+  }
+
+  .site-nav__shell {
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+  }
+
+  .site-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+  }
+
+  .site-nav__availability {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-nav-wrap {
+    top: 10px;
+    padding: 0 12px;
+  }
+
+  .site-nav__shell {
+    grid-template-columns: 1fr auto;
+    min-height: 0;
+    padding: 10px 12px 8px;
+
+    border-radius: 22px 42px 22px 42px;
+  }
+
+  .site-nav__brand {
+    gap: 8px;
+  }
+
+  .site-nav__monogram {
+    width: 32px;
+    height: 32px;
+    font-size: 13px;
+  }
+
+  .site-nav__brand-copy strong {
+    font-size: 13px;
+  }
+
+  .site-nav__brand-copy small {
+    font-size: 7px;
+  }
+
+  .site-nav__availability {
+    font-size: 0;
+    gap: 0;
+  }
+
+  .site-nav {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .site-nav__link {
+    flex: 1;
+    min-height: 32px;
+    padding: 0 6px;
+    font-size: 10px;
+  }
+
+  .site-nav__ornament {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav-wrap,
+  .site-nav__link {
+    transition: none;
+  }
+}

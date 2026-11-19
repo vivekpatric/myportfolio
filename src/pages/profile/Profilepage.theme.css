@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+/* Import this AFTER ProfilePage.css so it wins. */
+
+/* ---------- font + colours ---------- */
+.pr {
+  --pr-red: #4e111b;
+  --pr-cream: #f3efc8;
+  --pr-serif: 'Merriweather', Georgia, serif;
+  color: #4e111b;
+  background: #f3efc8;
+}
+.pr,
+.pr * { font-family: var(--pr-serif); }
+.pr-hero__lead,
+.pr-fact dt,
+.pr-stat__label,
+.pr-card p { color: #4e111b; }
+.pr-hero__lead,
+.pr-card p { opacity: 0.85; }
+.pr-card,
+.pr-moment__card,
+.pr-chip { border-color: rgba(78, 17, 27, 0.3); }
+.pr-fact,
+.pr-stat,
+.pr-row__line,
+.pr-row:last-child { border-color: rgba(78, 17, 27, 0.35); }
+.pr-row__line { background: rgba(78, 17, 27, 0.35); }
+
+/* Merriweather is wider than Bodoni, so loosen the tight tracking and scale type down a notch */
+.pr-hero__title { font-size: clamp(40px, 6.3vw, 112px); font-weight: 400; letter-spacing: -0.03em; line-height: 1.04; }
+.pr-role { letter-spacing: 0; font-size: clamp(18px, 1.7vw, 28px); }
+.pr-h { font-size: clamp(26px, 3.6vw, 58px); letter-spacing: -0.025em; line-height: 1.15; }
+.pr-about__lead { font-size: clamp(20px, 2.2vw, 36px); letter-spacing: -0.01em; line-height: 1.45; }
+.pr-stat__value { font-size: clamp(40px, 5.4vw, 88px); letter-spacing: -0.04em; }
+.pr-card h3,
+.pr-moment__card h3 { font-size: clamp(20px, 1.9vw, 30px); letter-spacing: -0.02em; line-height: 1.2; }
+.pr-card__chips--big .pr-chip { font-size: clamp(18px, 1.8vw, 28px); letter-spacing: -0.01em; }
+.pr-row strong { font-size: clamp(20px, 2.4vw, 38px); letter-spacing: -0.02em; line-height: 1.15; }
+.pr-belief__line { font-size: clamp(28px, 5vw, 92px); letter-spacing: -0.035em; line-height: 1.1; }
+
+
+.pr-tile {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 18px;
+  overflow: hidden;
+  border: 1px solid rgba(78, 17, 27, 0.35);
+  border-radius: 14px;
+  background: #fffdf9;
+  font-size: clamp(13px, 1vw, 15px);
+  font-weight: 700;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.pr-tile::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(90px circle at var(--mx) var(--my), rgba(255, 170, 120, 0.55), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.pr-tile span,
+.pr-tile i { position: relative; }
+.pr-tile i { color: #c2552f; font-size: 0.8em; font-style: normal; }
+.pr-tile:hover {
+  transform: translateY(-4px) scale(1.04);
+  border-color: #4e111b;
+  box-shadow: 0 0 0 1px #4e111b, 0 0 22px 4px rgba(214, 90, 60, 0.45), 0 10px 24px rgba(78, 17, 27, 0.2);
+}
+.pr-tile:hover::before { opacity: 1; }
+
+/* ---------- 3D knot in the portrait frame ---------- */
+.pr-portrait__frame { background: radial-gradient(circle at 50% 38%, #7a1d2b, #2a0509 78%); position: relative; overflow: hidden; }
+.pr-knot { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+/* ---------- footer rises over the page like on Home ---------- */
+.pr.is-curtained { position: sticky; top: var(--curtain-top, 0px); }
+
+
+/* ---------- scene backdrop: applied image + next image wiping in from the top ---------- */
+.prs-backdrop { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+.prs-base,
+.prs-reveal { position: absolute; inset: 0; background-position: center; background-size: cover; }
+.prs-reveal { transition: clip-path 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.prs-veil { position: absolute; inset: 0; background: rgba(243, 239, 200, 0.5); }
+
+/* ---------- energy bar ---------- */
+.prs-bar { width: min(100%, 640px); }
+
+.prs-bar__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.prs-edge {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  margin-left: -1px;
+  background: linear-gradient(180deg, transparent, #ffb48a, #fff, #ffb48a, transparent);
+  box-shadow: 0 0 18px 6px rgba(255, 170, 120, 0.7);
+  transition: left 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+.prs-shell { display: flex; align-items: center; }
+.prs-shell::after { content: ''; width: 9px; height: 30px; border-radius: 0 5px 5px 0; background: #4e111b; }
+
+.prs-cells {
+  display: flex;
+  flex: 1;
+  gap: 7px;
+  height: 78px;
+  padding: 8px;
+  border: 2px solid #4e111b;
+  border-radius: 14px;
+  background: rgba(255, 253, 249, 0.6);
+}
+.prs-cell {
+  flex: 1;
+  border: 0;
+  border-radius: 7px;
+  background: rgba(78, 17, 27, 0.1);
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+.prs-cell:hover { background: rgba(78, 17, 27, 0.22); }
+.prs-cell.is-on {
+  background: linear-gradient(180deg, #642806, #381001);
+  box-shadow: 0 0 14px rgba(214, 90, 60, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+.prs-cell:focus-visible { outline: 2px solid #4e111b; outline-offset: 2px; }
+
+/* ---------- skills on a spinning CD ---------- */
+.pr-skills { display: grid; place-items: center; padding: clamp(36px, 6vh, 72px) 0; border-bottom: 1px solid rgba(78, 17, 27, 0.3); }
+.pr-cd {
+   --cd: clamp(200px, 25vw, 500px);
+  position: relative;
+  width: var(--cd);
+  aspect-ratio: 1;
+  border: 2px solid #4e111b;
+  border-radius: 50%;
+    background:
+    repeating-radial-gradient(circle, transparent 0 7px, rgba(243, 239, 200, 0.07) 7px 8px),
+    conic-gradient(#f3efc8, #f3efc8, #f3efc8, #f3efc8, #f3efc8, #f3efc8, #f3efc8, #f3efc8, #f3efc8);
+  box-shadow: 0 30px 70px rgba(48, 2, 11, 0.25), inset 0 0 0 10px rgba(243, 239, 200, 0.18);
+ 
+}
+.pr-cd__ring { position: absolute; inset: 0; pointer-events: none; animation: pr-cd-spin var(--spin) linear infinite; }
+.pr-cd__ring--out { --r: calc(var(--cd) * 0.4); --spin: 70s; }
+.pr-cd__ring--in { --r: calc(var(--cd) * 0.215); --spin: 50s; animation-direction: reverse; }
+.pr-cd__item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) rotate(var(--a)) translateY(calc(var(--r) * -1)) rotate(calc(var(--a) * -1));
+}
+/* the chip cancels the ring's rotation so the text always stays upright */
+.pr-cd__chip { display: block; animation: pr-cd-spin var(--spin) linear infinite reverse; }
+.pr-cd__ring--in .pr-cd__chip { animation-direction: normal; }
+.pr-cd__label {
+  display: block;
+  padding: 0.5em 0.95em;
+  border: 1px solid rgba(78, 17, 27, 0.4);
+  border-radius: 999px;
+  background: #fffdf9;
+  font-size: clamp(9px, calc(var(--cd) * 0.02), 18px);
+  font-weight: 700;
+  white-space: nowrap;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.pr-cd__item:hover { z-index: 2; }
+.pr-cd__item:hover .pr-cd__label {
+  transform: scale(1.18);
+  border-color: #4e111b;
+  background: #fff3e6;
+  box-shadow: 0 0 0 1px #4e111b, 0 0 18px 4px rgba(214, 90, 60, 0.55);
+}
+.pr-cd:hover .pr-cd__ring,
+.pr-cd:hover .pr-cd__chip { animation-play-state: paused; }
+.pr-cd__hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: calc(var(--cd) * 0.17);
+  aspect-ratio: 1;
+  border: 2px solid #4e111b;
+  border-radius: 50%;
+  background: #f3efc8;
+  transform: translate(-50%, -50%);
+}
+.pr-cd__hub i { width: 34%; aspect-ratio: 1; border: 2px solid #4e111b; border-radius: 50%; background: #fffdf9; }
+@keyframes pr-cd-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .pr-cd__ring,
+  .pr-cd__chip { animation: none; }
+  .prs-reveal,
+  .prs-cell,
+  .pr-cd__label { transition: none; }
+}
+.prs-backdrop { opacity: 1; }
+.prs-backdrop::after { content: none; }
+.prs-layer { display: none; }
+.prs-reveal { width: 100%; height: 100%; display: block; }
+video.prs-base { width: 100%; height: 100%; object-fit: cover; }
