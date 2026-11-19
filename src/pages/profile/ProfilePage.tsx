@@ -483,7 +483,7 @@ import flowers from '../../assets/flowers.mp4';
 import autumn from '../../assets/autumn.jpeg';
 import cozy from '../../assets/cozy.jpeg';
 import relax from '../../assets/relax.mp4';
-import { lazy, Suspense } from 'react';
+
 import CatSlot from './CatSlot';
 gsap.registerPlugin(ScrollTrigger);
  // three.js only loads when Profile opens
