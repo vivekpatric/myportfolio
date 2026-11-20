@@ -4,6 +4,7 @@ import './index.css'
 
 import App from './App'
 import './theme-medieval.css'
+import './attention-glow.css'
 // if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 // window.scrollTo(0, 0);
 createRoot(document.getElementById('root')!).render(
