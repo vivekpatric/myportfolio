@@ -187,12 +187,24 @@ export default function HomeJourney({ Landing, onNavigate,onIntroComplete }: Hom
     if (!wrap || !inner || !shade) return;
 
     const media = gsap.matchMedia();
+    // media.add(
+    //   { desktop: '(min-width: 760px)', calm: '(prefers-reduced-motion: no-preference)' },
+    //   (context) => {
+    //     const { desktop, calm } = context.conditions as { desktop: boolean; calm: boolean };
+    //     if (!calm) return undefined;
     media.add(
-      { desktop: '(min-width: 760px)', calm: '(prefers-reduced-motion: no-preference)' },
-      (context) => {
-        const { desktop, calm } = context.conditions as { desktop: boolean; calm: boolean };
-        if (!calm) return undefined;
+  {
+    desktop: '(min-width: 760px) and (hover: hover) and (pointer: fine)',
+    calm: '(prefers-reduced-motion: no-preference)',
+  },
+  (context) => {
+    const { desktop, calm } = context.conditions as {
+      desktop: boolean;
+      calm: boolean;
+    };
 
+    // Do not run desktop pinning and 3D effects on touch devices.
+    if (!desktop || !calm) return undefined;
         const end = () => `+=${window.innerHeight}`;
         const pin = ScrollTrigger.create({
           trigger: wrap,
