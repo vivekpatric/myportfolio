@@ -1,5 +1,6 @@
 
-// import { useRef } from 'react';
+
+// import { useEffect, useRef } from 'react';
 // import { useGSAP } from '@gsap/react';
 // import { gsap } from 'gsap';
 // import './LandingArtWork.css';
@@ -80,6 +81,66 @@
 //       revertOnUpdate: true,
 //     },
 //   );
+
+//   // Phones: the hands sit in the gap the hero text column reserves for them
+//   // ('.hero-body__art-spacer'). Measure that gap and hand its position to the CSS.
+//   useEffect(() => {
+//     const root = artworkref.current;
+//     const shell = root?.closest<HTMLElement>('.landing-shell');
+//     if (!root || !shell) return undefined;
+//     const phone = window.matchMedia('(max-width: 700px)');
+//     let raf = 0;
+
+//     // offsetTop/offsetLeft ignore transforms, so this stays right while the page scales
+//     const offsetIn = (el: HTMLElement) => {
+//       let top = 0;
+//       let left = 0;
+//       let node: HTMLElement | null = el;
+//       while (node && node !== shell) {
+//         top += node.offsetTop;
+//         left += node.offsetLeft;
+//         node = node.offsetParent as HTMLElement | null;
+//       }
+//       return { top, left };
+//     };
+
+//     const place = () => {
+//       const spacer = shell.querySelector<HTMLElement>('.hero-body__art-spacer');
+//       if (!phone.matches || !spacer) {
+//         shell.classList.remove('has-phone-art');
+//         ['--art-top', '--art-cx', '--art-w'].forEach((name) => root.style.removeProperty(name));
+//         return;
+//       }
+//       // switch the phone layout on first (it shows the gap), then measure the gap
+//       shell.classList.add('has-phone-art');
+//       const { top, left } = offsetIn(spacer);
+//       root.style.setProperty('--art-top', `${top}px`);
+//       root.style.setProperty('--art-cx', `${left + spacer.offsetWidth / 2}px`);
+//       root.style.setProperty('--art-w', `${spacer.offsetWidth}px`);
+//     };
+//     const schedule = () => {
+//       cancelAnimationFrame(raf);
+//       raf = requestAnimationFrame(place);
+//     };
+
+//     const resizeObserver = new ResizeObserver(schedule);
+//     resizeObserver.observe(shell);
+//     const mutationObserver = new MutationObserver(schedule); // the hero mounts after the loader
+//     mutationObserver.observe(shell, { childList: true, subtree: true });
+//     phone.addEventListener('change', schedule);
+//     window.addEventListener('resize', schedule);
+//     document.fonts?.ready.then(schedule);
+//     schedule();
+
+//     return () => {
+//       shell.classList.remove('has-phone-art');
+//       cancelAnimationFrame(raf);
+//       resizeObserver.disconnect();
+//       mutationObserver.disconnect();
+//       phone.removeEventListener('change', schedule);
+//       window.removeEventListener('resize', schedule);
+//     };
+//   }, []);
 
 //   return (
 //     <section
@@ -192,13 +253,13 @@ function LandingArtWork({ visible,instant=false, onComplete }: LandingArtWorkPro
     },
   );
 
-  // Phones: the hands sit in the gap the hero text column reserves for them
+  // Phones and tablets (<= 1100px): the hands sit in the gap the hero text column reserves for them
   // ('.hero-body__art-spacer'). Measure that gap and hand its position to the CSS.
   useEffect(() => {
     const root = artworkref.current;
     const shell = root?.closest<HTMLElement>('.landing-shell');
     if (!root || !shell) return undefined;
-    const phone = window.matchMedia('(max-width: 700px)');
+    const phone = window.matchMedia('(max-width: 1100px)'); // phones AND tablets
     let raf = 0;
 
     // offsetTop/offsetLeft ignore transforms, so this stays right while the page scales

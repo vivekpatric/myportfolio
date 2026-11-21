@@ -1,4 +1,4 @@
-
+/* 
  .transition {
   position: fixed;
   inset: 0;
@@ -48,6 +48,65 @@
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
 } 
+@media (max-width: 700px) {
+  .transition_web {
+    top: calc(min(80vw, 750px) * 0.36);
+  }
+} */
+ .transition {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: transparent;
+  pointer-events: none;
+}
+
+.transition_top,
+.transition_bottom {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: var(--color-red);
+  will-change: transform;
+}
+
+.transition_top {
+  top: 0;
+}
+
+.transition_bottom {
+  bottom: 0;
+}
+
+/* Both images are square. aspect-ratio gives them their real height before the file has loaded.
+   Centring is done in RedCreamTransition.tsx with GSAP (xPercent / yPercent -50), not with a CSS
+   translate, because GSAP bakes a CSS translate into pixels the first time it reads it. */
+.transition_web {
+  position: absolute;
+  z-index: 2;
+  top: 60%;
+  left: 50%;
+  width: min(80vw, 750px);
+  aspect-ratio: 1 / 1;
+  max-height: 120vh;
+  object-fit: contain;
+  will-change: transform, opacity;
+}
+
+.transition_spider {
+  position: absolute;
+  z-index: 2;
+  bottom: 10%;
+  left: 50%;
+  width: min(80vw, 750px);
+  aspect-ratio: 1 / 1;
+  max-height: 30vh;
+  object-fit: contain;
+  will-change: transform, opacity;
+}
+
 @media (max-width: 700px) {
   .transition_web {
     top: calc(min(80vw, 750px) * 0.36);

@@ -9,7 +9,8 @@
   font-family: 'Merriweather', Georgia, serif;
 }
 .ml__content { display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2vh, 18px); }
-.ml__svg { width: min(86vw, 660px); height: auto; overflow: visible; }
+.ml__svg { width: min(86vw, 660px, 100vh); width: min(86vw, 660px, 100dvh); height: auto; overflow: visible; }
+/* the 100vh / 100dvh cap keeps the whole loader on screen when a phone is held sideways */
 
 /* anime mecha look: thick dark outlines, cream armour, orange accents, glowing optics */
 .m-p { stroke: #1d0508; stroke-width: 3; stroke-linejoin: round; }

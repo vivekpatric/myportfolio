@@ -1,4 +1,4 @@
-
+/* 
 
 :root {
   background: var(--color-cream);
@@ -20,10 +20,45 @@ body,
 html.intro-lock .featured-rail,
 html.intro-lock .pf {
   visibility: hidden;
+} */
+:root {
+  background: var(--color-cream);
 }
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+  background: var(--color-cream);
+}
+
+.landing-shell {
+  position: relative;
+  min-height: 100svh;
+  background: var(--color-cream);
+}
+html.intro-lock .featured-rail,
+html.intro-lock .pf {
+  visibility: hidden;
+}
+/* .has-phone-art is added by LandingArtWork.tsx once it has measured the gap the hands sit in.
+   Without it (script not run yet) none of this applies, so the hands can never cover the text. */
+
+/* PHONES + TABLETS (<= 1100px): put the hands exactly in the measured gap */
+@media (max-width: 1100px) {
+  .landing-shell.has-phone-art .artwork_frame {
+    top: var(--art-top, 38%);
+    left: var(--art-cx, 50%);
+    right: auto;
+    width: var(--art-w, min(86vw, 440px));
+    transform: translateX(-50%);
+    opacity: 1;
+  }
+}
+
+/* PHONES (<= 700px): the gap sits between the intro text and the notes */
 @media (max-width: 700px) {
-  /* .has-phone-art is added by LandingArtWork.tsx once it has measured the gap.
-     Without it (patch missing) none of this applies, so the hands can never cover the button. */
   .landing-shell.has-phone-art .hero-body__art-spacer {
     display: block;
     grid-column: 1;
@@ -32,13 +67,30 @@ html.intro-lock .pf {
     max-width: 440px;
     aspect-ratio: 1.65; /* same ratio as .artwork_frame */
   }
+}
 
-  .landing-shell.has-phone-art .artwork_frame {
-    top: var(--art-top, 38%);
-    left: var(--art-cx, 50%);
-    right: auto;
-    width: var(--art-w, min(86vw, 440px));
-    transform: translateX(-50%);
-    opacity: 1; /* was 0.17: that is what made it look like it was in the background */
+/* TABLETS (701-1100px): text on the left, the hands in their own gap on the right,
+   the three notes in one row underneath. Before this the hands sat on top of the notes. */
+@media (min-width: 701px) and (max-width: 1100px) {
+  .landing-shell.has-phone-art .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .landing-shell.has-phone-art .hero-body__art-spacer {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+    width: 100%;
+    aspect-ratio: 1.65; /* same ratio as .artwork_frame */
+  }
+
+  .landing-shell.has-phone-art .hero-right {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
   }
 }
