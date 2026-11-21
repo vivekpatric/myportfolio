@@ -5,7 +5,7 @@ import LandingArtWork from './LandingArtWork';
 import LensCursor from '../../components/LensCursor';
 import "./LandingPage.css"
 import HeroSection from './HeroSection';
-import FluidCursor from '../../components/FluidCursor'; 
+// import FluidCursor from '../../components/FluidCursor'; 
 import useScrollLock from '../../hooks/useScrollLock';
 import MechaLoader from './MechaLoader';
 let introPlayed = false;
