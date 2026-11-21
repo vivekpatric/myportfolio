@@ -48,3 +48,8 @@
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
 } 
+@media (max-width: 700px) {
+  .transition_web {
+    top: calc(min(80vw, 750px) * 0.36);
+  }
+}

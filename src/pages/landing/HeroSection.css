@@ -678,3 +678,30 @@
     animation: none;
   }
 }
+@media (max-width: 700px) {
+  .hero-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .hero-nav {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  /* GSAP animates the width to min(460px, 100vw - 32px); max-width keeps it inside the screen */
+  .hero-nav__frame {
+    max-width: 100%;
+  }
+
+  .hero-nav__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px; /* comfortable thumb target */
+    padding: 0 6px;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+}

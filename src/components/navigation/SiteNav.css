@@ -332,3 +332,50 @@
     transition: none;
   }
 }
+@media (max-width: 700px) {
+  body .site-nav__shell {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 8px;
+    width: calc(100% - 20px);
+    min-height: 48px;
+    padding: 6px 10px;
+    border-radius: 26px;
+  }
+
+  body .site-nav__shell .site-nav__brand {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  body .site-nav__shell .site-nav__brand-copy,
+  body .site-nav__shell .site-nav__ornament,
+  body .site-nav__shell .site-nav__number {
+    display: none;
+  }
+
+  body .site-nav__shell .site-nav {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: stretch;
+    width: 100%;
+    gap: 2px;
+    padding: 3px;
+  }
+
+  body .site-nav__shell .site-nav__link {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 36px;
+    padding: 0 4px;
+    font-size: 11px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+
+  body .site-nav__shell .site-nav__availability {
+    grid-column: 3;
+    grid-row: 1;
+    font-size: 0; /* shows only the green dot */
+    gap: 0;
+  }
+}

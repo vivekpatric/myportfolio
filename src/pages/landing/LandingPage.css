@@ -21,3 +21,24 @@ html.intro-lock .featured-rail,
 html.intro-lock .pf {
   visibility: hidden;
 }
+@media (max-width: 700px) {
+  /* .has-phone-art is added by LandingArtWork.tsx once it has measured the gap.
+     Without it (patch missing) none of this applies, so the hands can never cover the button. */
+  .landing-shell.has-phone-art .hero-body__art-spacer {
+    display: block;
+    grid-column: 1;
+    justify-self: center;
+    width: 100%;
+    max-width: 440px;
+    aspect-ratio: 1.65; /* same ratio as .artwork_frame */
+  }
+
+  .landing-shell.has-phone-art .artwork_frame {
+    top: var(--art-top, 38%);
+    left: var(--art-cx, 50%);
+    right: auto;
+    width: var(--art-w, min(86vw, 440px));
+    transform: translateX(-50%);
+    opacity: 1; /* was 0.17: that is what made it look like it was in the background */
+  }
+}
