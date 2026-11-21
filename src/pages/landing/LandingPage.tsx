@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './LandingPage.css';
 import RedCreamTransition from "./RedCreamTransition";
 import LandingArtWork from './LandingArtWork';
+import LensCursor from '../../components/LensCursor';
 import "./LandingPage.css"
 import HeroSection from './HeroSection';
 import FluidCursor from '../../components/FluidCursor'; 
@@ -17,7 +18,7 @@ function LandingPage(){
     useScrollLock(!skipIntro && !showHero);
     return( 
    <main className="landing-shell">
-      <FluidCursor/>
+     <LensCursor/>
       <LandingArtWork 
       visible={playArtwork} 
       instant = {skipIntro}

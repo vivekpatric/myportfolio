@@ -1,5 +1,5 @@
 
-.fluid-cursor-canvas {
+ /* .fluid-cursor-canvas {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -11,14 +11,56 @@
 
   background: transparent;
   mix-blend-mode: difference;
-}
+} 
 
 @media (pointer: coarse) {
   .fluid-cursor-canvas {
-    /* Keep touch support, but avoid showing a desktop-style
-       mouse effect on touch-first devices. */
+
     display: none;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fluid-cursor-canvas {
+    display: none;
+  }
+} */
+ 
+/* .fluid-cursor-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 100;
+  pointer-events: none;
+  background: transparent;
+  mix-blend-mode: difference;
+}
+
+.fluid-cursor-canvas--mirror {
+  z-index: 101;
+}
+
+/* The old (pointer: coarse) rule that hid the canvas is gone, so phones get the effect */
+
+/* @media (prefers-reduced-motion: reduce) {
+  .fluid-cursor-canvas {
+    display: none;
+  }
+}  */
+  .fluid-cursor-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  z-index: 100;
+  pointer-events: none;
+
+  background: transparent;
+  mix-blend-mode: difference;
 }
 
 @media (prefers-reduced-motion: reduce) {

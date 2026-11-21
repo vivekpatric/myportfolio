@@ -144,11 +144,11 @@
     right: 5vw;
     width: min(48vw, 520px);
     top: 50%;
-    opacity: 0.24;
+    opacity: 1;
   }
 }
 
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .artwork {
     position: absolute;
     inset: 0;
@@ -161,5 +161,22 @@
     right: 5vw;
     width: min(72vw, 420px);
     opacity: 0.17;
+  }
+} */
+@media (max-width: 700px) {
+  .artwork {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    min-height: 100svh;
+  }
+
+  .artwork_frame {
+    top: 50%;
+    left: 50%;
+    right: auto;                          /* cancels the 1100px rule */
+    width: min(84vw, 420px);
+    opacity: 1;                           /* normal opacity */
+    transform: translate(-50%, -50%);     /* true centre, horizontally and vertically */
   }
 }

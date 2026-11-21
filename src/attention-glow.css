@@ -116,6 +116,11 @@
    Desktop and tablet are not touched: everything is inside max-width media queries.
    ========================================================================== */
 
+/* ==========================================================================
+   MOBILE (phones). Import this LAST in main.tsx so it wins over the desktop rules.
+   Desktop and tablet are not touched: everything is inside max-width media queries.
+   ========================================================================== */
+
 /* --------------------------------------------------------------------------
    1. HERO: the hands artwork, centred, fully visible, with its own gap in the text
    The gap (.hero-body__art-spacer) sits between the intro text and the notes,
@@ -123,7 +128,9 @@
    and sets --art-top / --art-cx / --art-w, so the hands always sit exactly in it.
    -------------------------------------------------------------------------- */
 @media (max-width: 700px) {
-  .hero-body__art-spacer {
+  /* .has-phone-art is added by LandingArtWork.tsx once it has measured the gap.
+     Without it (patch missing) none of this applies, so the hands can never cover the button. */
+  .landing-shell.has-phone-art .hero-body__art-spacer {
     display: block;
     grid-column: 1;
     justify-self: center;
@@ -132,7 +139,7 @@
     aspect-ratio: 1.65; /* same ratio as .artwork_frame */
   }
 
-  .artwork_frame {
+  .landing-shell.has-phone-art .artwork_frame {
     top: var(--art-top, 38%);
     left: var(--art-cx, 50%);
     right: auto;

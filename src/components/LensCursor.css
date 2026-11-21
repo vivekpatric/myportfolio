@@ -1,0 +1,29 @@
+/* Three stacked layers. Each one blends with the page underneath, so together they swap
+   cream <-> maroon. They must NOT sit inside a wrapper with its own stacking context. */
+.lens-cursor {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* switched on by LensCursor.tsx only while the lens is alive */
+  pointer-events: none;
+  background: transparent;
+}
+
+.lens-cursor--1 { z-index: 100; mix-blend-mode: difference; }
+.lens-cursor--2 { z-index: 101; mix-blend-mode: plus-lighter; }
+.lens-cursor--3 { z-index: 102; mix-blend-mode: difference; }
+
+/* Browsers without "plus-lighter": keep only the first layer (a plain inversion) rather than a wrong colour */
+@supports not (mix-blend-mode: plus-lighter) {
+  .lens-cursor--2,
+  .lens-cursor--3 {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lens-cursor {
+    display: none !important;
+  }
+}
